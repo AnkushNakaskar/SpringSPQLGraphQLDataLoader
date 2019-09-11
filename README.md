@@ -7,7 +7,18 @@
     * if you cant to see the caching is happening,Have a debug point in data loader invoked the GraphQL API.
         * Only first time the dataloader is invoked ,Second time the cache valued are return.
     * Try to have Dataloader in all the services to fetch data where you think,Batching should be use.    
-    
+* Also check for Service class like ArticleService.java
+    * This class has   following code snippet
+         ```
+           @GraphQLQuery
+             public CompletableFuture<List<Comment>> getComments(@GraphQLContext Article article, @GraphQLEnvironment ResolutionEnvironment env) {
+                 log.info("Fetching the comments for article..." + article);
+                 DataLoader<Long, List<Comment>>  dataLoader = env.dataFetchingEnvironment.getDataLoader(DataLoaderConfig.COMMENT_FOR_ARTICLE_DATA_LOADER);
+                 final CompletableFuture<List<Comment>> result = dataLoader.load(article.getId());
+                 return result;
+             }
+         ```
+      * Check for GraphQLEnvironment annontations and how that particular dataloader is use in service.
 * You can refer the Link for More detail points read :
     * https://github.com/graphql-java/java-dataloader 
     * https://stackoverflow.com/questions/47674981/how-to-resolve-graphql-n1-issue-with-graphql-jpa-javat
