@@ -19,6 +19,8 @@
              }
          ```
       * Check for GraphQLEnvironment annontations and how that particular dataloader is use in service.
+* From my perspective DataLoader is though out to have a naive use of cache.
+    * Moreover dataloader provides a cacheMap configuration to pass your own cache implementation. For example a lru-cache or a ttl-cache based.
 * You can refer the Link for More detail points read :
     * https://github.com/graphql-java/java-dataloader 
     * https://stackoverflow.com/questions/47674981/how-to-resolve-graphql-n1-issue-with-graphql-jpa-javat

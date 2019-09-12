@@ -40,6 +40,9 @@ public class DataLoaderConfig {
     @Autowired
     private ArticleRepository articleRepository;
 
+    /*
+
+     */
     @Bean(name = "commentDataLoader")
     public DataLoader<Long, Comment> commentDataLoader() {
         BatchLoader<Long, Comment> commentBatchLoader = new BatchLoader<Long, Comment>() {
@@ -52,7 +55,7 @@ public class DataLoaderConfig {
             }
         };
 //        final BatchLoaderContextProvider sample=new BatchLoaderContextProvider();
-//        DataLoaderOptions.newOptions().
+//        DataLoaderOptions.newOptions().setCacheMap()
 //        DataLoader.newDataLoader(commentBatchLoader).clearAll()
         return DataLoader.newDataLoader(commentBatchLoader);
     }
