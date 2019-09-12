@@ -6,9 +6,7 @@ import com.spqr.graphql.dataloader.bean.Profile;
 import com.spqr.graphql.dataloader.repository.ArticleRepository;
 import com.spqr.graphql.dataloader.repository.CommentRepository;
 import com.spqr.graphql.dataloader.repository.ProfileRepository;
-import org.dataloader.BatchLoader;
-import org.dataloader.DataLoader;
-import org.dataloader.DataLoaderRegistry;
+import org.dataloader.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,6 +51,9 @@ public class DataLoaderConfig {
                 });
             }
         };
+//        final BatchLoaderContextProvider sample=new BatchLoaderContextProvider();
+//        DataLoaderOptions.newOptions().
+//        DataLoader.newDataLoader(commentBatchLoader).clearAll()
         return DataLoader.newDataLoader(commentBatchLoader);
     }
 
